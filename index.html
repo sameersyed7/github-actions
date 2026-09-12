@@ -1,180 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Linux & DevOps Engineer portfolio — cloud infrastructure, Kubernetes, automation and CI/CD.">
-  <title>Sameer Syed — Linux & DevOps Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova — Modern Store</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, Arial, sans-serif; color: #171717; background: #fafafa; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; }
+    .container { width: min(1180px, 92%); margin: auto; }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.94); backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+    }
+    .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; }
+    .nav-links { display: flex; gap: 28px; font-size: 14px; color: #555; }
+    .nav-links a:hover { color: #000; }
+    .cart { background: #111; color: #fff; padding: 11px 16px; border-radius: 999px; font-size: 14px; }
+
+    .hero {
+      margin-top: 28px; min-height: 430px; border-radius: 28px; overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.08)),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85") center/cover;
+      display: flex; align-items: center; color: white;
+    }
+    .hero-content { max-width: 570px; padding: 55px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; opacity: .8; }
+    h1 { font-size: clamp(42px, 6vw, 72px); line-height: .95; letter-spacing: -4px; margin: 16px 0; }
+    .hero p { font-size: 17px; line-height: 1.6; color: #eee; margin-bottom: 25px; }
+    .btn { display: inline-block; background: white; color: #111; padding: 13px 20px; border-radius: 999px; font-weight: 700; }
+
+    section { padding: 70px 0 10px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 25px; }
+    .section-head h2 { font-size: 32px; letter-spacing: -1.5px; }
+    .section-head span { color: #777; font-size: 14px; }
+
+    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .card { background: #fff; border: 1px solid #eee; border-radius: 18px; overflow: hidden; transition: .2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+    .card img { width: 100%; height: 270px; object-fit: cover; display: block; background: #f3f3f3; }
+    .info { padding: 17px; }
+    .category { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .name { font-weight: 700; margin: 7px 0 12px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; }
+    .price { font-weight: 800; }
+    .add { width: 34px; height: 34px; border-radius: 50%; background: #111; color: white; }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 65px 0; }
+    .feature { background: #f1f1ed; padding: 25px; border-radius: 18px; }
+    .feature b { display: block; margin-bottom: 8px; }
+    .feature p { color: #666; font-size: 14px; line-height: 1.5; }
+
+    footer { margin-top: 50px; padding: 35px 0; border-top: 1px solid #eee; color: #777; font-size: 13px; }
+
+    @media (max-width: 900px) {
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .features { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hero-content { padding: 32px; }
+      h1 { letter-spacing: -2px; }
+      .products { grid-template-columns: 1fr; }
+      .card img { height: 320px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="grid-bg"></div>
-  <header>
-    <nav class="nav container">
-      <a class="logo" href="#home"><span>~/</span>devops</a>
-      <div class="nav-links">
-        <a href="#about">about</a>
-        <a href="#skills">stack</a>
-        <a href="#projects">projects</a>
-        <a href="#experience">experience</a>
-        <a href="#contact">contact</a>
-      </div>
-      <a class="github-btn" href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
-      <button class="menu" aria-label="Menu">☰</button>
+
+<header>
+  <div class="container nav">
+    <div class="logo">NOVA.</div>
+    <nav class="nav-links">
+      <a href="#">New arrivals</a>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Accessories</a>
     </nav>
-  </header>
+    <button class="cart" onclick="showCart()">Cart (<span id="cartCount">0</span>)</button>
+  </div>
+</header>
 
-  <main id="home">
-    <section class="hero container">
-      <div class="hero-copy">
-        <div class="terminal-label"><span class="dot"></span> SYSTEM ONLINE</div>
-        <p class="kicker">$ whoami</p>
-        <h1>Linux &amp;<br><span>DevOps</span> Engineer.</h1>
-        <p class="hero-text">I build, automate and operate reliable cloud infrastructure — from Linux systems and containers to Kubernetes platforms and CI/CD pipelines.</p>
-        <div class="actions">
-          <a class="btn primary" href="#projects">View projects <span>↓</span></a>
-          <a class="btn secondary" href="#contact">Let's connect <span>↗</span></a>
+<main class="container">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">New season / 2026</div>
+      <h1>Everyday essentials, elevated.</h1>
+      <p>Thoughtfully designed pieces for modern everyday living. Clean, comfortable and made to last.</p>
+      <a class="btn" href="#shop">Shop collection →</a>
+    </div>
+  </section>
+
+  <section id="shop">
+    <div class="section-head">
+      <h2>Featured products</h2>
+      <span>Curated for you</span>
+    </div>
+
+    <div class="products">
+      <article class="card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80" alt="Minimal watch">
+        <div class="info">
+          <div class="category">Accessories</div>
+          <div class="name">Minimal Chronograph</div>
+          <div class="price-row"><span class="price">₹8,499</span><button class="add" onclick="addToCart()">+</button></div>
         </div>
-      </div>
+      </article>
 
-      <div class="terminal-window">
-        <div class="terminal-top"><span class="traffic"><i></i><i></i><i></i></span><span>sameersyed@devops:~</span><span>●</span></div>
-        <div class="terminal-body">
-          <p><b>sameersyed@devops</b>:~$ kubectl get nodes</p>
-          <p class="green">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS&nbsp;&nbsp; ROLE</p>
-          <p>gke-prod-01&nbsp;&nbsp; <span class="green">Ready</span>&nbsp;&nbsp;&nbsp; worker</p>
-          <p>gke-prod-02&nbsp;&nbsp; <span class="green">Ready</span>&nbsp;&nbsp;&nbsp; worker</p>
-          <p>gke-prod-03&nbsp;&nbsp; <span class="green">Ready</span>&nbsp;&nbsp;&nbsp; worker</p>
-          <br>
-          <p><b>sameersyed@devops</b>:~$ terraform apply</p>
-          <p class="green">Apply complete! Resources: 18 added, 0 changed, 0 destroyed.</p>
-          <br>
-          <p><b>sameersyed@devops</b>:~$ <span class="cursor">_</span></p>
+      <article class="card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80" alt="Running shoes">
+        <div class="info">
+          <div class="category">Footwear</div>
+          <div class="name">Urban Runner</div>
+          <div class="price-row"><span class="price">₹6,999</span><button class="add" onclick="addToCart()">+</button></div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <div class="ticker"><div>LINUX <b>•</b> KUBERNETES <b>•</b> AWS <b>•</b> GCP <b>•</b> TERRAFORM <b>•</b> ANSIBLE <b>•</b> CI/CD <b>•</b> DOCKER <b>•</b> OBSERVABILITY <b>•</b> LINUX <b>•</b> KUBERNETES <b>•</b> AWS <b>•</b> GCP <b>•</b> TERRAFORM <b>•</b> ANSIBLE <b>•</b> CI/CD <b>•</b></div></div>
-
-    <section id="about" class="section container">
-      <div class="section-tag">01 / about</div>
-      <div class="two-col">
-        <div><h2>Infrastructure that<br><em>just works.</em></h2></div>
-        <div>
-          <p class="lead">I enjoy solving the problems between code and production.</p>
-          <p>My work spans Linux administration, cloud platforms, containerization, Kubernetes, infrastructure as code, automation and monitoring. I focus on repeatable deployments, resilient systems and reducing operational toil.</p>
-          <div class="stats">
-            <div><strong>Linux</strong><span>Systems &amp; automation</span></div>
-            <div><strong>Cloud</strong><span>AWS + GCP</span></div>
-            <div><strong>K8s</strong><span>Containers &amp; platforms</span></div>
-          </div>
+      <article class="card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" alt="Black backpack">
+        <div class="info">
+          <div class="category">Bags</div>
+          <div class="name">Everyday Backpack</div>
+          <div class="price-row"><span class="price">₹4,299</span><button class="add" onclick="addToCart()">+</button></div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section id="skills" class="section dark">
-      <div class="container">
-        <div class="section-tag">02 / technical stack</div>
-        <div class="section-title"><h2>Tools I use to<br><em>ship reliably.</em></h2></div>
-        <div class="skill-grid">
-          <div class="skill"><span>01</span><h3>Linux</h3><p>RHEL · Ubuntu · Bash · PowerShell · System administration</p></div>
-          <div class="skill"><span>02</span><h3>Containers</h3><p>Docker · Podman · Container images · Registries · Compose</p></div>
-          <div class="skill"><span>03</span><h3>Kubernetes</h3><p>Kubernetes · GKE · Anthos Service Mesh · Helm · Workloads</p></div>
-          <div class="skill"><span>04</span><h3>Cloud</h3><p>AWS · GCP · EC2 · S3 · Lambda · Glue · EMR · Cloud Run</p></div>
-          <div class="skill"><span>05</span><h3>IaC &amp; Automation</h3><p>Terraform · Ansible · CloudFormation · Python · Go</p></div>
-          <div class="skill"><span>06</span><h3>CI/CD</h3><p>Jenkins · GitHub Actions · AWS CodeBuild · Artifactory</p></div>
-          <div class="skill"><span>07</span><h3>Observability</h3><p>Prometheus · Grafana · Datadog · Dynatrace · Splunk</p></div>
-          <div class="skill"><span>08</span><h3>Version Control</h3><p>Git · GitHub · Branching · Code reviews · Release workflows</p></div>
+      <article class="card">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80" alt="Sunglasses">
+        <div class="info">
+          <div class="category">Accessories</div>
+          <div class="name">Aero Sunglasses</div>
+          <div class="price-row"><span class="price">₹2,499</span><button class="add" onclick="addToCart()">+</button></div>
         </div>
-      </div>
-    </section>
+      </article>
+    </div>
+  </section>
 
-    <section id="projects" class="section container">
-      <div class="section-tag">03 / selected projects</div>
-      <div class="section-title"><h2>Build it.<br><em>Containerize it.</em></h2><p>Real-world engineering work, presented as concise case studies.</p></div>
+  <div class="features">
+    <div class="feature"><b>Free shipping</b><p>Free delivery on orders above ₹999.</p></div>
+    <div class="feature"><b>Easy returns</b><p>Simple 14-day returns on eligible products.</p></div>
+    <div class="feature"><b>Secure checkout</b><p>Your payments and personal information stay protected.</p></div>
+  </div>
+</main>
 
-      <div class="projects">
-        <article class="project featured">
-          <div class="project-visual docker">
-            <span class="badge">DOCKER / AWS</span>
-            <div class="architecture">
-              <div class="arch-box client">Frontend<br><small>Nginx</small></div>
-              <div class="arrow">→</div>
-              <div class="arch-box backend">Backend<br><small>Node.js :4000</small></div>
-              <div class="arrow">→</div>
-              <div class="arch-box mongo">MongoDB<br><small>Persistent volume</small></div>
-            </div>
-            <div class="terminal-mini">docker compose up -d<br><span>✔ 3 containers running</span></div>
-          </div>
-          <div class="project-info">
-            <div><span class="number">01</span><h3>GreenCart — Full-Stack Dockerization</h3><p>Containerized a React/Vite frontend and Node.js backend with MongoDB, multi-stage builds, isolated networking, health checks and persistent storage.</p></div>
-            <a href="https://github.com/sameersyed7/GreenCart" target="_blank" rel="noopener">View repository ↗</a>
-          </div>
-        </article>
+<footer>
+  <div class="container">© 2026 NOVA. — Built for modern shopping.</div>
+</footer>
 
-        <article class="project">
-          <div class="project-visual pipeline">
-            <span class="badge">CI/CD</span>
-            <div class="pipeline-flow"><b>GIT</b><i>→</i><b>BUILD</b><i>→</i><b>TEST</b><i>→</i><b>DEPLOY</b></div>
-          </div>
-          <div class="project-info"><div><span class="number">02</span><h3>Automated Delivery Pipeline</h3><p>Reusable CI/CD workflow for building, testing and deploying applications with automated quality gates.</p></div><span class="project-link">Case study ↗</span></div>
-        </article>
+<script>
+  let count = 0;
+  function addToCart() {
+    count++;
+    document.getElementById("cartCount").textContent = count;
+  }
+  function showCart() {
+    alert(count ? `You have ${count} item${count > 1 ? "s" : ""} in your cart.` : "Your cart is empty.");
+  }
+</script>
 
-        <article class="project">
-          <div class="project-visual k8s">
-            <span class="badge">KUBERNETES</span>
-            <div class="kube-orbit"><b>API</b><i></i><i></i><i></i><span>CLUSTER</span></div>
-          </div>
-          <div class="project-info"><div><span class="number">03</span><h3>Kubernetes Platform</h3><p>Container orchestration patterns covering deployments, services, scaling, health checks and production operations.</p></div><span class="project-link">Case study ↗</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="experience" class="section experience">
-      <div class="container">
-        <div class="section-tag">04 / experience</div>
-        <div class="two-col">
-          <h2>From terminal<br>to <em>production.</em></h2>
-          <div class="timeline">
-            <div class="timeline-item"><span>DEVOPS / CLOUD</span><h3>Cloud &amp; DevOps Engineering</h3><p>Designing infrastructure, automating deployments, supporting Kubernetes workloads and improving reliability across cloud environments.</p></div>
-            <div class="timeline-item"><span>AUTOMATION</span><h3>Infrastructure as Code</h3><p>Using Terraform and Ansible to turn repeatable infrastructure and configuration tasks into version-controlled automation.</p></div>
-            <div class="timeline-item"><span>OPERATIONS</span><h3>Linux &amp; Platform Operations</h3><p>Working with Linux systems, troubleshooting, scripting, monitoring and operational tooling to keep services dependable.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="command-section">
-      <div class="container command">
-        <p class="section-tag">05 / current focus</p>
-        <h2>Always learning.<br><span>Always automating.</span></h2>
-        <div class="command-line"><span>$</span> echo "make it reproducible"</div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="container contact-inner">
-        <div class="section-tag">06 / contact</div>
-        <h2>Let's build something<br><em>reliable.</em></h2>
-        <p>Open to DevOps, Linux, Cloud and Platform Engineering opportunities.</p>
-        <div class="contact-actions">
-
-          <a class="btn primary" href="mailto:syed81826@gmail.com">syed81826@gmail.com ↗</a>
-          <a class="btn secondary" href="https://github.com/sameersyed7/" target="_blank" rel="noopener">GitHub ↗</a>
-          <a class="btn secondary" href="https://www.linkedin.com/in/syed-sameer-5bb54a2a0/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer container">
-    <span>© 2026 Sameer Syed</span>
-    <span>Linux • DevOps • Cloud • Automation</span>
-    <a href="#home">↑ Back to top</a>
-  </footer>
-  <script src="script.js"></script>
 </body>
 </html>
