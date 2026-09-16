@@ -1,0 +1,22 @@
+#Goal : say Hi and show the repo name
+name: Hello Dosto
+on:
+  workflow_dispatch:
+    
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello Dosto"
+      - name: repo name
+        run: echo "Welcome"
+
+  repo_name:
+    needs: greet
+    runs-on: ubuntu-latest
+    steps:
+      - name: repo name
+        run: echo "{{ github.event.repository.name }}"
+      
