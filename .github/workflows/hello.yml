@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say Hello
-        run: echoes "Hello Dosto"
+        run: echoe "Hello Dosto"
       - name: greet in english
-        run: echoes "Welcome"
+        run: echoe "Welcome"
 
   repo_name:
     needs: greet
